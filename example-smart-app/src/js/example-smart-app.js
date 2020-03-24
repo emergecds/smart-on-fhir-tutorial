@@ -1,3 +1,5 @@
+var request = require("request");
+
 (function(window){
   window.extractData = function() {
     var ret = $.Deferred();
@@ -5,6 +7,27 @@
     function onError() {
       console.log('Loading error', arguments);
       ret.reject();
+    }
+
+    /**
+     * Just a wrapper around "request" to make it return a promise
+     * @param {Object} options
+     * @returns {Promise<Object>}
+     */
+    function requestPromise(options) {
+        return new Promise((resolve, reject) => {
+            request(Object.assign({ strictSSL: false }, options), (error, res) => {
+                if (error) {
+                    return reject(error);
+                }
+                if (res.statusCode >= 400) {
+                    return reject(new Error(
+                        `${res.statusCode}: ${res.statusMessage}\n${res.body}`
+                    ));
+                }
+                resolve(res);
+            });
+        });
     }
 
     function onReady(smart)  {
@@ -117,18 +140,27 @@
   }
 
   window.drawVisualization = function(p) {
-    $('#holder').show();
-    $('#loading').hide();
-    $('#id').html(p.id);
-    $('#fname').html(p.fname);
-    $('#lname').html(p.lname);
-    $('#gender').html(p.gender);
-    $('#birthdate').html(p.birthdate);
-    $('#height').html(p.height);
-    $('#systolicbp').html(p.systolicbp);
-    $('#diastolicbp').html(p.diastolicbp);
-    $('#ldl').html(p.ldl);
-    $('#hdl').html(p.hdl);
+    requestPromise({
+        method: "POST",
+        url   : "https://ci.emergecds.com/api/v1/search/launchCerner",
+        json  : true,
+        form  : {
+            patient: p
+        }
+    }).then(res => {
+      $('#holder').show();
+      $('#loading').hide();
+      $('#id').html(p.id);
+      $('#fname').html(p.fname);
+      $('#lname').html(p.lname);
+      $('#gender').html(p.gender);
+      $('#birthdate').html(p.birthdate);
+      $('#height').html(p.height);
+      $('#systolicbp').html(p.systolicbp);
+      $('#diastolicbp').html(p.diastolicbp);
+      $('#ldl').html(p.ldl);
+      $('#hdl').html(p.hdl);
+    });
   };
 
 })(window);
