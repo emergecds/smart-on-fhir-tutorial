@@ -118,7 +118,7 @@
 
   window.drawVisualization = function(p) {
     var xhr = new XMLHttpRequest();
-    var url = "https://ci.emergecds.com/api/v1/search/login/cerner";
+    var url = "https://ci.emergecds.com/api/v1/search/login/cerner/isProd/false";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
