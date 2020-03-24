@@ -1,5 +1,3 @@
-var request = require("request");
-
 (function(window){
   window.extractData = function() {
     var ret = $.Deferred();
@@ -7,27 +5,6 @@ var request = require("request");
     function onError() {
       console.log('Loading error', arguments);
       ret.reject();
-    }
-
-    /**
-     * Just a wrapper around "request" to make it return a promise
-     * @param {Object} options
-     * @returns {Promise<Object>}
-     */
-    function requestPromise(options) {
-        return new Promise((resolve, reject) => {
-            request(Object.assign({ strictSSL: false }, options), (error, res) => {
-                if (error) {
-                    return reject(error);
-                }
-                if (res.statusCode >= 400) {
-                    return reject(new Error(
-                        `${res.statusCode}: ${res.statusMessage}\n${res.body}`
-                    ));
-                }
-                resolve(res);
-            });
-        });
     }
 
     function onReady(smart)  {
@@ -140,27 +117,28 @@ var request = require("request");
   }
 
   window.drawVisualization = function(p) {
-    requestPromise({
-        method: "POST",
-        url   : "https://ci.emergecds.com/api/v1/search/launchCerner",
-        json  : true,
-        form  : {
-            patient: p
+    var xhr = new XMLHttpRequest();
+    var url = "https://ci.emergecds.com/api/v1/search/launchCerner";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          $('#holder').show();
+          $('#loading').hide();
+          $('#id').html(p.id);
+          $('#fname').html(p.fname);
+          $('#lname').html(p.lname);
+          $('#gender').html(p.gender);
+          $('#birthdate').html(p.birthdate);
+          $('#height').html(p.height);
+          $('#systolicbp').html(p.systolicbp);
+          $('#diastolicbp').html(p.diastolicbp);
+          $('#ldl').html(p.ldl);
+          $('#hdl').html(p.hdl);
         }
-    }).then(res => {
-      $('#holder').show();
-      $('#loading').hide();
-      $('#id').html(p.id);
-      $('#fname').html(p.fname);
-      $('#lname').html(p.lname);
-      $('#gender').html(p.gender);
-      $('#birthdate').html(p.birthdate);
-      $('#height').html(p.height);
-      $('#systolicbp').html(p.systolicbp);
-      $('#diastolicbp').html(p.diastolicbp);
-      $('#ldl').html(p.ldl);
-      $('#hdl').html(p.hdl);
-    });
+    };
+    var data = JSON.stringify({"demographics": p});
+    xhr.send(data);
   };
 
 })(window);
