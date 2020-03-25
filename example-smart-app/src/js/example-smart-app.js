@@ -60,7 +60,7 @@
           //
           // p.hdl = getQuantityValueAndUnit(hdl[0]);
           // p.ldl = getQuantityValueAndUnit(ldl[0]);
-          var p = JSON.stringify({"demographics": patient, "observation": observation})
+          var p = JSON.stringify(Object.assign(patient, observation));
           ret.resolve(p);
         });
       } else {
