@@ -125,7 +125,7 @@
         if (xhr.readyState === 4 && xhr.status === 200) {
           // $('#holder').show();
           // $('#loading').hide();
-          $('#id').html(p.demographics.id);
+          $('#id').html(p.patient.id);
           // $('#fname').html(p.fname);
           // $('#lname').html(p.lname);
           // $('#gender').html(p.gender);
