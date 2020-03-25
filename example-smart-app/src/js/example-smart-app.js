@@ -125,7 +125,7 @@
         if (xhr.readyState === 4 && xhr.status === 200) {
           // $('#holder').show();
           // $('#loading').hide();
-          $('#id').html(p.id);
+          $('#id').html(p.demographics.id);
           // $('#fname').html(p.fname);
           // $('#lname').html(p.lname);
           // $('#gender').html(p.gender);
@@ -138,7 +138,7 @@
 
         }
     };
-    var data = JSON.stringify({"demographics": p});
+    var data = JSON.stringify({"patient": p});
     xhr.send(data);
   };
 
