@@ -60,7 +60,7 @@
           //
           // p.hdl = getQuantityValueAndUnit(hdl[0]);
           // p.ldl = getQuantityValueAndUnit(ldl[0]);
-          var p = JSON.stringify($.extend(patient, obv));
+          var p = $.extend(patient, obv);
           ret.resolve(p);
         });
       } else {
@@ -138,7 +138,7 @@
 
         }
     };
-    var data = JSON.stringify({"patient": p});
+    var data = JSON.stringify(p);
     xhr.send(data);
   };
 
