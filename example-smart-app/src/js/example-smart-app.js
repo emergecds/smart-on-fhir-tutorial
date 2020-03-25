@@ -60,7 +60,7 @@
           //
           // p.hdl = getQuantityValueAndUnit(hdl[0]);
           // p.ldl = getQuantityValueAndUnit(ldl[0]);
-          var p = JSON.stringify(Object.assign(patient, observation));
+          var p = JSON.stringify(Object.assign(patient, obv));
           ret.resolve(p);
         });
       } else {
