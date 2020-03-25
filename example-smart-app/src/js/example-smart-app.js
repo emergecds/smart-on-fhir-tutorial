@@ -60,7 +60,7 @@
           //
           // p.hdl = getQuantityValueAndUnit(hdl[0]);
           // p.ldl = getQuantityValueAndUnit(ldl[0]);
-          var p = $.extend(patient, {"observations": obv});
+          var p = {"patient": patient, "observations": obv};
           ret.resolve(p);
         });
       } else {
