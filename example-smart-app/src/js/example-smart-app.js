@@ -123,8 +123,8 @@
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          // $('#holder').show();
-          // $('#loading').hide();
+          $('#holder').show();
+          $('#loading').hide();
           $('#id').html(p.patient.id);
           // $('#fname').html(p.fname);
           // $('#lname').html(p.lname);
