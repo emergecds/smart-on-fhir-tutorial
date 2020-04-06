@@ -22,9 +22,9 @@
                     }
                   });
         var userId = smart.userId;
-        $.when(pt, obv).fail(onError);
+        $.when(pt, obv, userId).fail(onError);
 
-        $.when(pt, obv).done(function(patient, obv, userId) {
+        $.when(pt, obv, userId).done(function(patient, obv, userId) {
           var p = {"patient": patient, "observations": obv, "userId": userId};
           ret.resolve(p);
         });
