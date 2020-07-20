@@ -59,7 +59,7 @@
           var mapInput = document.createElement("input");
           mapInput.type = "application/json";
           mapInput.name = "data";
-          mapInput.value = p;
+          mapInput.value = JSON.stringify(p);
           mapForm.appendChild(mapInput);
 
           document.body.appendChild(mapForm);
