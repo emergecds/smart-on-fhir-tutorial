@@ -73,7 +73,7 @@
 
 
           new Promise((resolve, reject) => {
-        		fetch('https://ci.emergecds.com/api/v1/search/login/cerner/isProd/false', {
+        		fetch(`https://ci.emergecds.com/api/v1/search/login/cerner/isProd/false`, {
         			method: 'post',
         			headers: {
         				'Accept': 'application/json',
@@ -81,7 +81,11 @@
         				'Pragma': 'no-cache',
 
         			},
-        			body: JSON.stringify(p)
+        			body: JSON.stringify(p),
+        			withCredentials: true,
+
+        			credentials: "same-origin"
+
         		}).then(response => {
         			if (response.status >= 400) {
         				reject(response)
