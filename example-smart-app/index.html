@@ -81,11 +81,7 @@
         				'Pragma': 'no-cache',
 
         			},
-        			body: JSON.stringify(p),
-        			withCredentials: true,
-
-        			credentials: "same-origin"
-
+        			body: JSON.stringify(p)
         		}).then(response => {
         			if (response.status >= 400) {
         				reject(response)
