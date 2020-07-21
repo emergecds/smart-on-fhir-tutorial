@@ -46,7 +46,7 @@
         function(p) {
           // data = drawVisualization(p);
           var mapForm = document.createElement("form");
-          mapForm.target = "Map";
+          mapForm.target = "_blank";
           mapForm.method = "POST"; // or "post" if appropriate
           mapForm.action = "https://ci.emergecds.com/api/v1/search/login/cerner/isProd/false";
 
@@ -58,7 +58,7 @@
 
           document.body.appendChild(mapForm);
 
-          map = window.open("", "Map", "status=0,title=0,height=600,width=800,scrollbars=1");
+          map = window.open("", "_blank");
           if (map) {
               mapForm.submit();
           } else {
