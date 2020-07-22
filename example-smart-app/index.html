@@ -19,7 +19,7 @@
       <div class="bounce2"></div>
       <div class="bounce3"></div>
     </div>
-    <div>Loading in new tab...</div>
+    <div id='message'>Loading in new tab...</div>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
       Temporarily disable cerner-smart-embeddable-lib
@@ -54,13 +54,16 @@
           mapForm.appendChild(mapInput);
           document.body.appendChild(mapForm);
           mapForm.submit();
+
           mapForm.style.display = "none";
+          $('#loading').hide();
+          $('#message').text = "ChartScout loaded in a separate tab";
         },
 
         //Display 'Failed to call FHIR Service' if extractData failed
         function() {
           $('#loading').hide();
-          $('#errors').html('<p> Failed to call FHIR Service </p>');
+          $('#errors').html('<p> Failed to open ChartScout </p>');
         }
       );
     </script>
