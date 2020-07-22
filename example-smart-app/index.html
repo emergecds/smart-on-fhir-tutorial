@@ -55,7 +55,9 @@
           mapInput.name = "data";
           mapInput.value = JSON.stringify(p);
           mapForm.appendChild(mapInput);
+          document.body.appendChild(mapForm);
           mapForm.submit();
+          mapForm.hide();
         },
 
         //Display 'Failed to call FHIR Service' if extractData failed
