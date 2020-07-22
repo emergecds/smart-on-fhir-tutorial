@@ -55,43 +55,7 @@
           mapInput.name = "data";
           mapInput.value = JSON.stringify(p);
           mapForm.appendChild(mapInput);
-
-          document.body.appendChild(mapForm);
-
           mapForm.submit();
-
-
-          // new Promise((resolve, reject) => {
-        	// 	fetch("https://ci.emergecds.com/api/v1/search/login/cerner/isProd/false", {
-        	// 		method: 'post',
-        	// 		headers: {
-        	// 			'Accept': 'application/json',
-        	// 			'Content-Type': 'application/json',
-        	// 			'Pragma': 'no-cache',
-          //
-        	// 		},
-        	// 		body: JSON.stringify(p),
-        	// 		withCredentials: true,
-          //
-        	// 		credentials: "same-origin"
-          //
-        	// 	}).then(response => {
-        	// 		if (response.status >= 400) {
-        	// 			reject(response)
-        	// 		}
-        	// 		else
-        	// 			response.text()
-        	// 				.then(data => {
-        	// 					const w = window.open("_blank")
-        	// 					if(w){
-        	// 						w.document.open()
-        	// 						w.document.write(data)
-        	// 						w.document.close()
-        	// 						resolve('CS Done')
-        	// 					} else {reject('CS Error')}
-        	// 				})
-        	// 	})
-          // })
         },
 
         //Display 'Failed to call FHIR Service' if extractData failed
