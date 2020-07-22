@@ -19,10 +19,7 @@
       <div class="bounce2"></div>
       <div class="bounce3"></div>
     </div>
-    <div id='holder' >
-      <h2>EMERGE-SMART-App</h2>
-      <div>"Loading in new tab"</div>
-    </div>
+    <div>"Loading in new tab"</div>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
       Temporarily disable cerner-smart-embeddable-lib
@@ -57,7 +54,7 @@
           mapForm.appendChild(mapInput);
           document.body.appendChild(mapForm);
           mapForm.submit();
-          mapForm.hide();
+          mapForm.style.display = "block";
         },
 
         //Display 'Failed to call FHIR Service' if extractData failed
