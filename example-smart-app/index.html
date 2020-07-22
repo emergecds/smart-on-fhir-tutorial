@@ -58,12 +58,7 @@
 
           document.body.appendChild(mapForm);
 
-          map = window.open("", "_blank");
-          if (map) {
-              mapForm.submit();
-          } else {
-              alert('You must allow popups for this map to work.');
-          }
+          mapForm.submit();
 
 
           // new Promise((resolve, reject) => {
